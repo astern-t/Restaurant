@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxurious Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/color/48/000000/restaurant.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://img.icons8.com/color/48/000000/restaurant.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://img.icons8.com/color/48/000000/restaurant.png">
+    
+    <!-- For Safari on macOS and iOS -->
+    <link rel="mask-icon" href="https://img.icons8.com/color/48/000000/restaurant.png" color="#5bbad5">
+    
+    <!-- For Windows -->
+    <meta name="msapplication-TileImage" content="https://img.icons8.com/color/48/000000/restaurant.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        /* Base font settings */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Theme variables */
+        :root {
+            --primary: #007AFF;
+            --secondary: #5856D6;
+            --success: #34C759;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #FFFFFF;
+            --border-color: #E5E5EA;
+            --button-bg: #fbbf24;
+            --button-hover: #f59e0b;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark theme variables */
+        html.dark {
+            --text-primary: #F8F9FA;
+            --text-secondary: #CED4DA;
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --nav-bg: rgba(18, 18, 18, 0.95);
+            --card-bg: #1E1E1E;
+            --border-color: #2C2C2C;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base styles */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* Navigation styles */
+        .nav-blur {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--button-bg);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--button-bg);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Theme switch */
+        .theme-switch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--button-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .theme-switch:hover {
+            transform: rotate(45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-link {
+            display: block;
+            padding: 0.75rem 0;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-link:hover {
+            color: var(--button-bg);
+            padding-left: 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+                            url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--button-bg);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark Mode Adjustments */
+        html.dark .nav-blur {
+            background: var(--nav-bg);
+        }
+
+        html.dark .nav-link {
+            color: var(--text-primary);
+        }
+
+        html.dark .mobile-menu {
+            background-color: var(--bg-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Card styles */
+        .ios-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .ios-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px var(--shadow-color);
+        }
+
+        /* Form elements */
+        .ios-input {
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .ios-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+            outline: none;
+        }
+
+        .ios-button {
+            background-color: var(--button-bg);
+            color: white;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .ios-button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        /* Text styles */
+        .text-primary {
+            color: var(--text-primary);
+        }
+
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+
+        .bg-primary {
+            background-color: var(--bg-primary);
+        }
+
+        .bg-secondary {
+            background-color: var(--bg-secondary);
+        }
+
+        /* Enhanced image styles */
+        .img-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .img-wrapper img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Enhanced text styles */
+        .heading-primary {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .heading-secondary {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .text-body {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Hero section enhancement */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+        }
+
+        /* Menu item enhancement */
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item img {
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .price-tag {
+            font-weight: 700;
+            color: var(--button-bg);
+            font-size: 1.25rem;
+        }
+
+        /* Navigation enhancement */
+        .nav-link {
+            position: relative;
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--button-bg);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Add these styles to your existing CSS */
+        .review-card {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px var(--shadow-color);
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.25rem;
+            letter-spacing: 2px;
+        }
+
+        .stars i {
+            filter: drop-shadow(0 2px 3px rgba(255, 215, 0, 0.2));
+        }
+
+        .text-primary {
+            color: var(--text-primary);
+        }
+
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+
+        .text-body {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .heading-secondary {
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        /* Enhanced card styles for reviews */
+        .ios-card.review-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        /* Dark mode specific adjustments */
+        html.dark .ios-card.review-card {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        html.dark .text-body {
+            color: var(--text-secondary);
+        }
+
+        html.dark .stars {
+            color: #FFD700;
+            opacity: 0.9;
+        }
+
+        /* Add these styles to your existing CSS */
+        .menu-card {
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px var(--shadow-color);
+        }
+
+        .img-wrapper {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover .menu-image {
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+        }
+
+        .menu-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .menu-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .price-tag {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--button-bg);
+        }
+
+        .order-button {
+            background-color: var(--button-bg);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .order-button:hover {
+            background-color: var(--button-hover);
+            transform: scale(1.1);
+        }
+
+        /* Dark mode adjustments */
+        html.dark .menu-card {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        html.dark .menu-content {
+            border-top: 1px solid var(--border-color);
+        }
+
+        html.dark .menu-title {
+            color: var(--text-primary);
+        }
+
+        html.dark .menu-description {
+            color: var(--text-secondary);
+        }
+
+        /* Enhanced heading style */
+        .heading-secondary {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-secondary::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--button-bg);
+        }
+
+        /* Add these styles to your existing CSS */
+        .story-image-wrapper {
+            position: relative;
+            padding: 20px;
+        }
+
+        .img-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px var(--shadow-color);
+            transition: transform 0.5s ease;
+        }
+
+        .img-frame:hover {
+            transform: translateY(-10px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .img-frame:hover .story-image {
+            transform: scale(1.05);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: var(--button-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(20%);
+        }
+
+        .experience-badge .years {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .experience-badge .text {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .story-content {
+            padding: 20px;
+        }
+
+        .story-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .story-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--button-bg);
+        }
+
+        .story-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* Dark mode adjustments */
+        html.dark .story-text {
+            color: var(--text-secondary);
+        }
+
+        html.dark .story-subtitle {
+            color: var(--text-primary);
+        }
+
+        html.dark .img-frame {
+            border: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .story-image {
+                height: 300px;
+            }
+
+            .experience-badge {
+                padding: 15px;
+                transform: translateY(10%);
+            }
+
+            .experience-badge .years {
+                font-size: 2rem;
+            }
+
+            .story-subtitle {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Add these styles to your existing CSS */
+        .reservation-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 15px 30px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+
+        .reservation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .ios-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .ios-input:focus {
+            border-color: var(--button-bg);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+            outline: none;
+        }
+
+        .ios-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .ios-button {
+            background-color: var(--button-bg);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(251, 191, 36, 0.2);
+        }
+
+        .ios-button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Dark mode adjustments */
+        html.dark .ios-input {
+            background-color: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        html.dark .ios-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        html.dark .form-label {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-card {
+                margin: 0 1rem;
+            }
+        }
+
+        /* Add these styles to your existing CSS */
+        .contact-info, .contact-form {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info:hover, .contact-form:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .icon {
+            color: var(--button-bg);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .info-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .info-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .contact-link {
+            color: var(--button-bg);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--button-hover);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: var(--button-bg);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+        }
+
+        /* Dark mode adjustments */
+        html.dark .contact-info,
+        html.dark .contact-form {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        html.dark .info-title {
+            color: var(--text-primary);
+        }
+
+        html.dark .info-text {
+            color: var(--text-secondary);
+        }
+
+        html.dark .contact-link {
+            color: var(--button-bg);
+        }
+
+        html.dark .social-icon {
+            background-color: var(--button-bg);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                gap: 2rem;
+            }
+
+            .info-title {
+                font-size: 1.25rem;
+            }
+
+            .info-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* iOS Toggle Switch Styles */
+        .ios-toggle-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .ios-toggle {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+
+        .ios-toggle-label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 64px;
+            height: 34px;
+            background: #e4e4e7;
+            border-radius: 50px;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ios-toggle-handle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .light-icon,
+        .dark-icon {
+            font-size: 16px;
+            color: #71717a;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .light-icon {
+            margin-left: 5px;
+            color: #fbbf24;
+        }
+
+        .dark-icon {
+            margin-right: 5px;
+            color: #6b7280;
+        }
+
+        /* Toggle Active State */
+        .ios-toggle:checked + .ios-toggle-label {
+            background: #374151;
+        }
+
+        .ios-toggle:checked + .ios-toggle-label .ios-toggle-handle {
+            transform: translateX(30px);
+            background: #1f2937;
+        }
+
+        .ios-toggle:checked + .ios-toggle-label .light-icon {
+            color: #6b7280;
+        }
+
+        .ios-toggle:checked + .ios-toggle-label .dark-icon {
+            color: #fbbf24;
+        }
+
+        /* Hover Effects */
+        .ios-toggle-label:hover .ios-toggle-handle {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .ios-toggle:focus + .ios-toggle-label {
+            box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+        }
+
+        /* Dark Mode Adjustments */
+        html.dark .ios-toggle-label {
+            background: #1f2937;
+        }
+
+        html.dark .ios-toggle-handle {
+            background: #374151;
+        }
+
+        /* Animation */
+        @keyframes toggleOn {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .ios-toggle:checked + .ios-toggle-label .ios-toggle-handle {
+            animation: toggleOn 0.2s ease-out;
+        }
+
+        /* Menu Navigation */
+        .menu-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-nav-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .menu-nav-btn.active,
+        .menu-nav-btn:hover {
+            background-color: var(--button-bg);
+            color: white;
+        }
+
+        /* Dietary Filters */
+        .dietary-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        .filter-label {
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .filter-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            background-color: var(--bg-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .dietary-checkbox {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .filter-icon {
+            font-size: 1.25rem;
+        }
+
+        .filter-text {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Hover and Active States */
+        .filter-label:hover .filter-content {
+            background-color: var(--button-bg);
+            color: white;
+        }
+
+        .dietary-checkbox:checked + .filter-content {
+            background-color: var(--button-bg);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark Mode */
+        html.dark .filter-content {
+            background-color: var(--bg-secondary);
+        }
+
+        html.dark .filter-text {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .dietary-filters {
+                gap: 1rem;
+            }
+
+            .filter-content {
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 nav-blur">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a class="nav-logo" href="#">
+                    <span class="primary-text">Luxurious</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="#menu">Menu</a>
+                    <a class="nav-link" href="#reservation">Reservation</a>
+                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="#reviews">Reviews</a>
+                </div>
+
+                <div class="flex items-center space-x-6">
+                    <div class="ios-toggle-wrapper">
+                        <input type="checkbox" id="theme-toggle" class="ios-toggle">
+                        <label for="theme-toggle" class="ios-toggle-label">
+                            <i class="fas fa-sun light-icon"></i>
+                            <i class="fas fa-moon dark-icon"></i>
+                            <span class="ios-toggle-handle"></span>
+                        </label>
+                    </div>
+                    <button class="mobile-menu-btn md:hidden" id="mobile-menu-button">
+                        <i class="fas fa-bars menu-icon"></i>
+                        <i class="fas fa-times close-icon hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden mobile-menu" id="mobile-menu">
+            <div class="container mx-auto px-6 py-4 space-y-4">
+                <a href="#home" class="mobile-link">Home</a>
+                <a href="#menu" class="mobile-link">Menu</a>
+                <a href="#reservation" class="mobile-link">Reservation</a>
+                <a href="#contact" class="mobile-link">Contact</a>
+                <a href="#reviews" class="mobile-link">Reviews</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Luxurious</h1>
+            <p class="hero-subtitle">Experience fine dining at its best</p>
+            <a href="#reservation" class="hero-button">
+                Book a Table
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-secondary text-center mb-16">Our Story</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="story-image-wrapper">
+                    <div class="img-frame">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" 
+                             alt="Restaurant interior" 
+                             class="story-image">
+                    </div>
+                    <div class="experience-badge">
+                        <span class="years">30+</span>
+                        <span class="text">Years of Excellence</span>
+                    </div>
+                </div>
+                <div class="story-content">
+                    <h3 class="story-subtitle">A Legacy of Culinary Excellence</h3>
+                    <p class="story-text mb-6">
+                        Founded in 1990, Luxurious has been serving exceptional cuisine to our distinguished guests for over three decades. Our journey began with a simple vision: to create extraordinary dining experiences that celebrate the art of gastronomy.
+                    </p>
+                    <p class="story-text mb-6">
+                        Our master chefs combine traditional techniques with modern innovation to create unforgettable dining experiences. Each dish is crafted with precision, passion, and the finest ingredients sourced from around the world.
+                    </p>
+                    <p class="story-text italic font-medium">
+                        "Every dish tells a story, every meal creates a memory."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-secondary text-center mb-16">Our Culinary Offerings</h2>
+            
+            <!-- Menu Navigation -->
+            <div class="menu-nav mb-12">
+                <button class="menu-nav-btn active" data-category="all">All</button>
+                <button class="menu-nav-btn" data-category="starters">Starters</button>
+                <button class="menu-nav-btn" data-category="mains">Main Course</button>
+                <button class="menu-nav-btn" data-category="desserts">Desserts</button>
+                <button class="menu-nav-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <!-- Dietary Filter -->
+            <div class="dietary-filters mb-12">
+                <label class="filter-label">
+                    <input type="checkbox" value="vegetarian" class="dietary-checkbox">
+                    <div class="filter-content">
+                        <span class="filter-icon">🥬</span>
+                        <span class="filter-text">Vegetarian</span>
+                    </div>
+                </label>
+                <label class="filter-label">
+                    <input type="checkbox" value="vegan" class="dietary-checkbox">
+                    <div class="filter-content">
+                        <span class="filter-icon">🌱</span>
+                        <span class="filter-text">Vegan</span>
+                    </div>
+                </label>
+                <label class="filter-label">
+                    <input type="checkbox" value="gluten-free" class="dietary-checkbox">
+                    <div class="filter-content">
+                        <span class="filter-icon">🌾</span>
+                        <span class="filter-text">Gluten-Free</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Seared Scallops -->
+                <div class="menu-card ios-card" data-category="starters" data-dietary="gluten-free">
+                    <div class="img-wrapper">
+                        <img src="https://delishar.com/wp-content/uploads/2016/02/Seared-Scallops-with-XO-sauce-1.jpg" 
+                             alt="Seared Scallops" 
+                             class="menu-image">
+                        <div class="dietary-icons">
+                            <span title="Gluten Free">🌾</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <h3 class="menu-title">Seared Scallops</h3>
+                            <span class="price-tag">$28</span>
+                        </div>
+                        <p class="menu-description">
+                            Pan-seared diver scallops with cauliflower purée, crispy pancetta, apple gastrique, and fresh herbs. Finished with brown butter sauce.
+                        </p>
+                        <div class="menu-footer">
+                            <div class="allergens">
+                                <span class="allergen-label">Contains:</span>
+                                <span class="allergen">Shellfish</span>
+                                <span class="allergen">Dairy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duck Breast -->
+                <div class="menu-card ios-card" data-category="mains" data-dietary="gluten-free">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58" 
+                             alt="Duck Breast" 
+                             class="menu-image">
+                        <div class="dietary-icons">
+                            <span title="Gluten Free">🌾</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <h3 class="menu-title">Maple Glazed Duck Breast</h3>
+                            <span class="price-tag">$45</span>
+                        </div>
+                        <p class="menu-description">
+                            Pan-seared Muscovy duck breast with maple-bourbon glaze, wild mushroom risotto, roasted baby carrots, and cherry gastrique. Garnished with micro greens.
+                        </p>
+                        <div class="menu-footer">
+                            <div class="allergens">
+                                <span class="allergen-label">Contains:</span>
+                                <span class="allergen">Dairy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lobster Risotto -->
+                <div class="menu-card ios-card" data-category="mains" data-dietary="gluten-free">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1633436375795-12b3b339712f" 
+                             alt="Lobster Risotto" 
+                             class="menu-image">
+                        <div class="dietary-icons">
+                            <span title="Gluten Free">🌾</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <h3 class="menu-title">Truffle Lobster Risotto</h3>
+                            <span class="price-tag">$52</span>
+                        </div>
+                        <p class="menu-description">
+                            Creamy Arborio rice risotto with butter-poached Maine lobster, shaved black truffle, aged Parmesan, and fresh herbs. Finished with lobster butter sauce.
+                        </p>
+                        <div class="menu-footer">
+                            <div class="allergens">
+                                <span class="allergen-label">Contains:</span>
+                                <span class="allergen">Shellfish</span>
+                                <span class="allergen">Dairy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Courses -->
+                <div class="menu-card ios-card" data-category="mains">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" 
+                             alt="Wagyu Ribeye" 
+                             class="menu-image">
+                        <div class="dietary-icons">
+                            <span title="Gluten Free">🌾</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <h3 class="menu-title">Wagyu Ribeye</h3>
+                            <span class="price-tag">$65</span>
+                        </div>
+                        <p class="menu-description">
+                            Premium A5 Japanese Wagyu ribeye, dry-aged for 28 days. Served with roasted seasonal vegetables and truffle-infused potato purée. Finished with red wine reduction.
+                        </p>
+                        <!-- Status Bar Addition -->
+                        <div class="status-bar">
+                            <div class="status-item" title="Chef's Special">
+                                <img src="https://img.icons8.com/color/48/000000/chef-hat.png" alt="Chef's Special">
+                            </div>
+                            <div class="status-item" title="Spiciness Level">
+                                <span class="spice-level">
+                                    <i class="fas fa-pepper-hot active"></i>
+                                    <i class="fas fa-pepper-hot"></i>
+                                    <i class="fas fa-pepper-hot"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="menu-footer">
+                            <div class="allergens">
+                                <span class="allergen-label">Contains:</span>
+                                <span class="allergen">Dairy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-card ios-card" data-category="desserts">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814" 
+                             alt="Chocolate Soufflé" 
+                             class="menu-image">
+                        <div class="dietary-icons">
+                            <span title="Vegetarian">🥬</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <h3 class="menu-title">Chocolate Soufflé</h3>
+                            <span class="price-tag">$18</span>
+                        </div>
+                        <p class="menu-description">
+                            Warm Valrhona chocolate soufflé with vanilla bean ice cream and salted caramel sauce. Please allow 20 minutes for preparation.
+                        </p>
+                        <div class="menu-footer">
+                            <div class="allergens">
+                                <span class="allergen-label">Contains:</span>
+                                <span class="allergen">Dairy</span>
+                                <span class="allergen">Eggs</span>
+                                <span class="allergen">Gluten</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks -->
+                <div class="menu-card ios-card" data-category="drinks">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3" 
+                             alt="Wine Selection" 
+                             class="menu-image">
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <h3 class="menu-title">Premium Wine Selection</h3>
+                            <span class="price-tag">Market Price</span>
+                        </div>
+                        <p class="menu-description">
+                            Curated selection of fine wines from renowned vineyards worldwide. Ask your server for today's special selections and pairing recommendations.
+                        </p>
+                        <div class="menu-footer">
+                            <div class="allergens">
+                                <span class="allergen-label">Contains:</span>
+                                <span class="allergen">Sulfites</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-secondary text-center mb-12">Make a Reservation</h2>
+            <div class="max-w-xl mx-auto">
+                <div class="reservation-card ios-card">
+                    <form class="space-y-6 p-8">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" 
+                                   placeholder="Enter your full name" 
+                                   class="ios-input"
+                                   required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" 
+                                   placeholder="Enter your email" 
+                                   class="ios-input"
+                                   required>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Date</label>
+                                <input type="date" 
+                                       class="ios-input"
+                                       required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Time</label>
+                                <input type="time" 
+                                       class="ios-input"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Number of Guests</label>
+                            <select class="ios-input" required>
+                                <option value="" disabled selected>Select number of guests</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5+ People</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Special Requests</label>
+                            <textarea class="ios-input" 
+                                      rows="3" 
+                                      placeholder="Any special requests or dietary requirements?"></textarea>
+                        </div>
+
+                        <button type="submit" class="ios-button w-full">
+                            Book Your Table
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-secondary text-center mb-12">Customer Reviews</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="ios-card p-8 review-card">
+                    <div class="flex items-center mb-6">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-body mb-6">"An exceptional dining experience. The food was outstanding and the service impeccable."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-bold text-primary mb-1">John Smith</p>
+                            <p class="text-secondary text-sm">Food Critic</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="ios-card p-8 review-card">
+                    <div class="flex items-center mb-6">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-body mb-6">"The atmosphere is elegant yet comfortable. Perfect for special occasions."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-bold text-primary mb-1">Sarah Johnson</p>
+                            <p class="text-secondary text-sm">Restaurant Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="ios-card p-8 review-card">
+                    <div class="flex items-center mb-6">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-body mb-6">"The wine selection is impressive and the sommelier's recommendations were perfect."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael Brown" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="font-bold text-primary mb-1">Michael Brown</p>
+                            <p class="text-secondary text-sm">Wine Connoisseur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-secondary text-center mb-16">Contact Us</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div class="contact-info ios-card p-8">
+                    <div class="info-block mb-8">
+                        <div class="info-header">
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            <h3 class="info-title">Location</h3>
+                        </div>
+                        <p class="info-text">
+                            XXXXX Fine Dining Street<br>
+                            XXXXX Luxury Avenue<br>
+                            XXXXX, XX XXXXX
+                        </p>
+                    </div>
+
+                    <div class="info-block mb-8">
+                        <div class="info-header">
+                            <i class="fas fa-clock icon"></i>
+                            <h3 class="info-title">Hours</h3>
+                        </div>
+                        <p class="info-text">
+                            Monday - Friday: 5:00 PM - 11:00 PM<br>
+                            Saturday - Sunday: 4:00 PM - 12:00 AM
+                        </p>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-header">
+                            <i class="fas fa-phone-alt icon"></i>
+                            <h3 class="info-title">Contact</h3>
+                        </div>
+                        <p class="info-text">
+                            Phone: <a href="tel:+XXXXXXXXXXX" class="contact-link">(XXX) XXX-XXXX</a><br>
+                            Email: <a href="mailto:XXXXX@XXXXX.com" class="contact-link">XXXXX@XXXXX.com</a>
+                        </p>
+                    </div>
+
+                    <div class="social-links mt-8">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form ios-card p-8">
+                    <form class="space-y-6">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" 
+                                   class="ios-input" 
+                                   placeholder="Enter your name"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" 
+                                   class="ios-input" 
+                                   placeholder="Enter your email"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="ios-input" 
+                                      rows="4" 
+                                      placeholder="Write your message here..."
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit" class="ios-button w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Luxurious</h3>
+                    <p class="text-gray-400">Exceptional dining experiences since 1990</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition">Menu</a></li>
+                        <li><a href="#reservation" class="text-gray-400 hover:text-white transition">Reservation</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Luxurious Restaurant. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function initTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            // Set initial theme
+            const savedTheme = localStorage.getItem('theme') || 
+                             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            html.className = savedTheme;
+
+            // Toggle theme
+            themeToggle.addEventListener('click', () => {
+                const isDark = html.className === 'dark';
+                html.className = isDark ? 'light' : 'dark';
+                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            });
+        }
+
+        // Mobile menu functionality
+        function initMobileMenu() {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = button.querySelector('.fa-bars');
+            const closeIcon = button.querySelector('.fa-times');
+
+            button.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            // Close menu when clicking links
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+        }
+
+        // Smooth scrolling
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initMobileMenu();
+            initSmoothScroll();
+        });
+
+        // Add this to your existing JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            
+            // Set initial state based on current theme
+            toggle.checked = html.classList.contains('dark');
+
+            toggle.addEventListener('change', () => {
+                if (toggle.checked) {
+                    html.classList.add('dark');
+                    localStorage.theme = 'dark';
+                } else {
+                    html.classList.remove('dark');
+                    localStorage.theme = 'light';
+                }
+            });
+        });
+
+        // Menu filtering functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtns = document.querySelectorAll('.menu-nav-btn');
+            const menuItems = document.querySelectorAll('.menu-card');
+            const dietaryCheckboxes = document.querySelectorAll('.dietary-checkbox');
+
+            function updateFilters() {
+                const selectedCategory = document.querySelector('.menu-nav-btn.active').dataset.category;
+                const selectedDiets = Array.from(dietaryCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                menuItems.forEach(item => {
+                    const matchesCategory = selectedCategory === 'all' || item.dataset.category === selectedCategory;
+                    const matchesDietary = selectedDiets.length === 0 || 
+                        selectedDiets.every(diet => item.dataset.dietary && item.dataset.dietary.split(' ').includes(diet));
+                    
+                    // Use opacity for smooth transition
+                    if (matchesCategory && matchesDietary) {
+                        item.style.display = 'block';
+                        setTimeout(() => item.style.opacity = '1', 10);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 300);
+                    }
+                });
+            }
+
+            // Initialize menu items with transition
+            menuItems.forEach(item => {
+                item.style.transition = 'opacity 0.3s ease';
+                item.style.opacity = '1';
+            });
+
+            // Event listeners
+            menuBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    menuBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    updateFilters();
+                });
+            });
+
+            dietaryCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateFilters);
+            });
+
+            // Initial filter
+            updateFilters();
+        });
+    </script>
+</body>
+</html>
